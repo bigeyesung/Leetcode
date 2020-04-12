@@ -1,48 +1,87 @@
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+# A simple inorder traversal based program to convert a 
+# Binary Tree to DLL 
+
+# A Binary Tree node 
+class Node: 
+	
+	# Constructor to create a new tree node 
+	def __init__(self, data): 
+		self.data = data 
+		self.left = None
+		self.right = None
+
+# Standard Inorder traversal of tree 
+def inorder(root): 
+	
+	if root is not None: 
+		inorder(root.left) 
+		print ("\t%d" %(root.data))
+		inorder(root.right) 
+
+# Changes left pointers to work as previous pointers 
+# in converted DLL 
+# The function simply does inorder traversal of 
+# Binary Tree and updates 
+# left pointer using previously visited node 
+def fixPrevPtr(root): 
+	if root is not None: 
+		fixPrevPtr(root.left) 
+		root.left = fixPrevPtr.pre 
+		fixPrevPtr.pre = root 
+		fixPrevPtr(root.right) 
+
+# Changes right pointers to work as nexr pointers in 
+# converted DLL 
+def fixNextPtr(root): 
+
+	prev = None
+	# Find the right most node in BT or last node in DLL 
+	while(root and root.right != None): 
+		root = root.right 
+
+	# Start from the rightmost node, traverse back using 
+	# left pointers 
+	# While traversing, change right pointer of nodes 
+	while(root and root.left != None): 
+		prev = root 
+		root = root.left 
+		root.right = prev 
+
+	# The leftmost node is head of linked list, return it 
+	return root 
+
+# The main function that converts BST to DLL and returns 
+# head of DLL 
+def BTToDLL(root): 
+	
+	# Set the previous pointer 
+	fixPrevPtr(root) 
+
+	# Set the next pointer and return head of DLL 
+	return fixNextPtr(root) 
+
+# Traversses the DLL from left to right 
+def printList(root): 
+	while(root != None): 
+		print ("\t%d" %(root.data)) 
+		root = root.right 
+
+# Driver program to test above function 
+root = Node(4) 
+root.left = Node(2) 
+root.right = Node(5) 
+root.left.left = Node(1) 
+root.left.right = Node(3) 
 
 
-def treeToDoublyList(root):
-    if (not root):
-        return None
-    head = TreeNode(None)
-    pre = TreeNode(None)
-    inorder(root, pre, head)
-    pre.right = head
-    head.left = pre
-    return head
-    
-def inorder(node, pre, head):
-    if (not node):
-        return
-    print(node.val)
-    inorder(node.left, pre, head)
-    if (not head):
-        head = node
-        pre = node
-    else:
-        pre.right = node
-        node.left = pre
-        pre = node
-    
-    inorder(node.right, pre, head)
+print ("\n\t\t Inorder Tree Traversal\n")
+inorder(root) 
 
-node1 = TreeNode(1)    
-node2 = TreeNode(2)
-node3 = TreeNode(3)
-node4 = TreeNode(4)
-node5 = TreeNode(5)
+# Static variable pre for function fixPrevPtr 
+fixPrevPtr.pre = None
+head = BTToDLL(root) 
 
-node4.left = node2
-node4.right = node5
-node2.left= node1
-node2.right = node3
-
-head = treeToDoublyList(node4)
-tmp = head.val
-while(not head):
-    print("val: ",head.val)
-    head = head.right
+print ("\n\n\t\tDLL Traversal\n")
+printList(head) 
+	
+# This code is contributed by Nikhil Kumar Singh(nickzuck_007) 

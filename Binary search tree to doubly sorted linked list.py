@@ -1,7 +1,7 @@
 # A simple inorder traversal based program to convert a 
 # Binary Tree to DLL 
-
 # A Binary Tree node 
+## https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-2/
 class Node: 
 	
 	# Constructor to create a new tree node 
@@ -70,8 +70,8 @@ def printList(root):
 root = Node(4) 
 root.left = Node(2) 
 root.right = Node(5) 
-root.left.left = Node(1) 
-root.left.right = Node(3) 
+# root.left.left = Node(1) 
+# root.left.right = Node(3) 
 
 
 print ("\n\t\t Inorder Tree Traversal\n")

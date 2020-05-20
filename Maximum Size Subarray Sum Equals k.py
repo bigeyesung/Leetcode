@@ -1,3 +1,4 @@
+
 def maxSubArrayLen(nums, k):
     """
     :type nums: List[int]
@@ -17,8 +18,6 @@ def maxSubArrayLen(nums, k):
     return max_len
 
 
-nums = [1, -1, 5, -2, 3] 
-k = 3
 
 ret = maxSubArrayLen(nums,k)
 print(ret)

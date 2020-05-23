@@ -1,7 +1,10 @@
+import collections
+
 class TrieNode():
     def __init__(self):
         self.children = collections.defaultdict(TrieNode)
         self.isWord = False
+        self.val = "root"
     
 class Trie():
     def __init__(self):
@@ -11,25 +14,19 @@ class Trie():
         node = self.root
         for w in word:
             node = node.children[w]
+            node.val = w
         node.isWord = True
     
-    def search(self, word):
-        node = self.root
-        for w in word:
-            node = node.children.get(w)
-            if not node:
-                return False
-        return node.isWord
     
-class Solution(object):
+class Solution():
     def findWords(self, board, words):
         res = []
         trie = Trie()
         node = trie.root
         for w in words:
             trie.insert(w)
-        for i in xrange(len(board)):
-            for j in xrange(len(board[0])):
+        for i in range(len(board)):
+            for j in range(len(board[0])):
                 self.dfs(board, node, i, j, "", res)
         return res
     
@@ -41,6 +38,7 @@ class Solution(object):
             return 
         tmp = board[i][j]
         node = node.children.get(tmp)
+        
         if not node:
             return 
         board[i][j] = "#"
@@ -49,3 +47,13 @@ class Solution(object):
         self.dfs(board, node, i, j-1, path+tmp, res)
         self.dfs(board, node, i, j+1, path+tmp, res)
         board[i][j] = tmp
+
+board = [
+  ['e','a','t']
+]
+words = ["oath","pea","eat","rain"]
+
+sol = Solution()
+res = sol.findWords(board, words)
+print(res)
+

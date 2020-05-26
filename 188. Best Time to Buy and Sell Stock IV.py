@@ -1,6 +1,5 @@
 class Solution:
     def maxProfit(self, k, prices):
-        tmp = len(prices)/2
         if k >= len(prices)//2:
             return sum(i-j for i, j in zip(prices[1:], prices[:-1]) if i-j > 0)
         hold, release = [float('-inf')]*(k+1), [0]*(k+1)
@@ -12,6 +11,9 @@ class Solution:
 
 k = 2
 prices = [3,2,6,5,0]
+tmp = zip(prices[1:], prices[:-1])
+for item in tmp:
+    print(item)
 sol = Solution()
 ret = sol.maxProfit(k,prices)
 print(ret)

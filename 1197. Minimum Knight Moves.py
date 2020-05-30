@@ -21,7 +21,7 @@ class Solution(object):
                 continue
             seen.add((xx, yy))
             # lower_bound:a threshold for not allow map to go x,y <=0 cases
-            lower_bound = -2
+            lower_bound = 0
             for dx, dy in [[1, 2], [1, -2], [2, 1], [2, -1], [-1, 2], [-1, -2], [-2, 1], [-2, -1]]:
                 if lower_bound < dx + xx <= target_x and lower_bound < dy + yy <= target_y:
                     q.append((dx + xx, dy + yy, step + 1))
@@ -29,3 +29,4 @@ class Solution(object):
 sol = Solution()
 ret = sol.minKnightMoves(2,1)
 print(ret)
+

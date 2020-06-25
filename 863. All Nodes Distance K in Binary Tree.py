@@ -22,8 +22,15 @@ class Solution:
         bfs = [target.val]
         seen = set(bfs)
         for i in range(K):
-            bfs = [y for x in bfs for y in conn[x] if y not in seen]
-            seen |= set(bfs)
+            # bfs = [y for x in bfs for y in conn[x] if y not in seen]
+            new_level = []
+            for x in bfs:
+                for y in conn[x]:
+                    if y not in seen:
+                        new_level.append(y)
+            bfs = new_level
+            # add all the values in bfs into seen
+            seen = seen | set(bfs)
         return bfs
 
 node3 = TreeNode(3)

@@ -24,7 +24,7 @@ class Solution:
             for j in range(10):
                 for n in next_step[n]:
                     newdp[j]+=dp[n]
-            dp
+            dp= newdp
 sol = Solution()
-ret = sol.knightDialer(4)
+ret = sol.knightDialer(2)
 print(ret)

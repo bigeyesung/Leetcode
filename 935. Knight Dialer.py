@@ -26,5 +26,5 @@ class Solution:
                     newdp[j]+=dp[n]
             dp= newdp
 sol = Solution()
-ret = sol.knightDialer(2)
+ret = sol.knightDialer(4)
 print(ret)

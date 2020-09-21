@@ -24,7 +24,7 @@ def class_grades(students):
         tmp = [key,median]
         ret.append(tmp)
     return ret
-
+# add lists to test
 students = [["Ana Stevens", "1a", 5], ["Mark Stevens", "1a", 4], ["Jon Jones", "1a", 2], ["Bob Kent", "1b", 4]]
 print(class_grades(students))
 

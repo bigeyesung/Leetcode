@@ -1,7 +1,16 @@
-import re
-def freqAlphabets(s: str) -> str:
-    # create a mapping dic
-    # loop to go through digits (while-loop)
-    #   if each two digit has hashtag-> map 2
-    #   else: map 1 digit
-    return ''.join(chr(int(i[:2]) + 96) for i in re.findall(r'\d\d#|\d', s))
+def freqAlphabets(s):
+    char_map = "abcdefghijklmnopqrstuvwxyz"
+    stack = []
+    for index, val in enumerate(s):
+        if stack and val == '#':
+            a, b = stack.pop(), stack.pop()
+            stack.append(b+a)
+        else:
+            stack.append(val)
+    res = ""
+    for i in stack:
+        res += char_map[int(i)-1]
+    return res
+if __name__ == "__main__":
+    s = "10#11#12"
+    ret = freqAlphabets(s)

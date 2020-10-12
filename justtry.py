@@ -1,3 +1,4 @@
+# check if it is power2 or not
 def Ispower2(num):
     ispower2=True
     count=0

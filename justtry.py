@@ -1,4 +1,5 @@
 # check if it is power2 or not
+# new method testing performance
 def Ispower2(num):
     ispower2=True
     count=0

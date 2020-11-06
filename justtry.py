@@ -1,6 +1,7 @@
 # check if it is power2 or not
 # new method testing performance
 # method for power of 2
+# TBC power of 2 
 def Ispower2(num):
     ispower2=True
     count=0

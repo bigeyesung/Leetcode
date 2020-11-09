@@ -1,3 +1,4 @@
+# kth smallest ele in a sorted matrix
 import heapq
 def kthSmallest( matrix, k):
     heap, res = [(row[0], r, 0) 

@@ -1,39 +1,15 @@
 # Time:  O(n)
 # Space: O(1)
-
-class Solution(object):
-    def lengthOfLongestSubstringKDistinct(self, s, k):
-        """
-        :type s: str
-        :type k: int
-        :rtype: int
-        """
-        longest, start, distinct_count, visited = 0, 0, 0, [0 for _ in xrange(256)]
-        for i, char in enumerate(s):
-            if visited[ord(char)] == 0:
-                distinct_count += 1
-            visited[ord(char)] += 1
-            while distinct_count > k:
-                visited[ord(s[start])] -= 1
-                if visited[ord(s[start])] == 0:
-                    distinct_count -= 1
-                start += 1
-            longest = max(longest, i - start + 1)
-        return longest
-
-
-# Time:  O(n)
-# Space: O(1)
 from collections import Counter
-
-
-class Solution2(object):
+from collections import defaultdict
+class Solution():
     def lengthOfLongestSubstringKDistinct(self, s, k):
         """
         :type s: str
         :type k: int
         :rtype: int
         """
+        dic = defaultdict(list)
         counter = Counter()
         left, max_length = 0, 0
         for right, char in enumerate(s):
@@ -43,5 +19,36 @@ class Solution2(object):
                 if counter[s[left]] == 0:
                     del counter[s[left]]
                 left += 1
+            print("current sub: ", s[left:right+1])
+            # all posible strings
+            dic[right-left+1].append(s[left:right+1])
             max_length = max(max_length, right-left+1)
+        
         return max_length
+
+    def test(self, s, k):
+        # for-loop to iterate
+        #   right ptr to add char
+        #   left prt to remove char
+        #   while sub str char type > k: remove left char,
+        dic, counter = defaultdict(list), Counter()
+        left, max_lenth = 0,0
+        for right, char in enumerate(s):
+            counter[char]+=1
+            while(len(counter)>k):
+                #do sth
+                counter[s[left]]-= 1
+                if counter[s[left]] == 0:
+                    del counter[s[left]]
+                left += 1
+            print("cur sub: ", s[left:right+1])
+            dic[right-left+1].append(s[left:right+1])
+            max_lenth = max(max_lenth, right-left+1)
+        return max_lenth
+
+
+if __name__ == "__main__":
+    sol = Solution()
+    string = "abac" 
+    ret = sol.test(string,2)
+    print(ret)

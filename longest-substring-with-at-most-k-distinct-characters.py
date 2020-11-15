@@ -49,6 +49,6 @@ class Solution():
 
 if __name__ == "__main__":
     sol = Solution()
-    string = "abac" 
+    string = "abcbbbbcccbdddadacb" 
     ret = sol.test(string,2)
     print(ret)

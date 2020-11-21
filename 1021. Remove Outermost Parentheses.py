@@ -12,8 +12,13 @@ class Solution:
             # >0 means: check 
             if c == '(' and opened > 0: res.append(c)
             if c == ')' and opened > 1: res.append(c)
-            opened += 1 if c == '(' else -1
+            if c == '(':
+                opened += 1
+            else:
+                opened -= 1
+            # opened += 1 if c == '(' else -1
         return "".join(res)
 
 sol = Solution()
-sol.removeOuterParentheses("((()")
+ret = sol.removeOuterParentheses("((()")
+print(ret)

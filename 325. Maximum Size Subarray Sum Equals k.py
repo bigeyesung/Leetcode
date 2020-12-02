@@ -16,7 +16,7 @@
 # Follow Up:
 # Can you do it in O(n) time?
 
-def func(nums, k):
+def MaxSizeSubEqualToK(nums, k):
     SUM=0
     res=0
     table = {}

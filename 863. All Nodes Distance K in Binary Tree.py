@@ -36,9 +36,14 @@ class Solution:
 node3 = TreeNode(3)
 node5 = TreeNode(5)
 node1 = TreeNode(1)
+node2 = TreeNode(2)
+node7 = TreeNode(7)
+node4 = TreeNode(4)
 node3.left = node5
 node3.right = node1
-
+node5.right = node2
+node2.left = node7
+node2.right = node4
 sol = Solution()
 res = sol.distanceK(node3, node5, 2)
 print(res)

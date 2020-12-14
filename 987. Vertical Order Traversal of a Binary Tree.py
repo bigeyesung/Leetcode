@@ -10,7 +10,7 @@ class Solution:
         self.ver = collections.defaultdict(list)
         def dfs(node, x, y):
             if node:
-                self.ver[x].append((y, node.val))
+                self.ver[x].append([y, node.val])
                 dfs(node.left, x - 1, y + 1)
                 dfs(node.right, x + 1, y + 1)
         dfs(root, 0, 0)

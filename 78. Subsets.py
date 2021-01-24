@@ -1,22 +1,30 @@
 class Solution:
   def subsets(self, nums):
     ans = []
-    def dfs(n, s, cur):
-      if n == len(cur):
-        ans.append(cur.copy())
+
+    def dfs(length, ind, curSub):
+      #if target length == len of current Subarr-> append
+      if length == len(curSub):
+        print("cur new subset:", curSub.copy())
+        ans.append(curSub.copy())
         return
-      for i in range(s, len(nums)):
-        cur.append(nums[i])
-        print("n: ",n)
-        print("i+1: ",i+1)
-        dfs(n, i + 1, cur)
-        cur.pop()
-    for i in range(len(nums) + 1):
-      if i==3:
-        print("pai")
-      dfs(i, 0, [])
+      #else add more eles to the curSub
+      for i in range(ind, len(nums)):
+        curSub.append(nums[i])
+        print("append: ",nums[i])
+        dfs(length, i + 1, curSub)
+        curSub.pop()
+
+
+    #start from length=0 subset: []
+    #then length=1 subset:[1],[2],[3]
+    #then length=2 subset:[1,2],[1,3],[2,3]
+    #then length=3 subset:[1,2,3]
+    for length in range(len(nums) + 1):
+      dfs(length, 0, [])
     return ans
 
 nums=[1,2,3]
 sol=Solution()
 ans=sol.subsets(nums)
+

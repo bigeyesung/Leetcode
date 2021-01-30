@@ -8,9 +8,18 @@ class Solution:
     def getIntersectionNode(self, headA, headB) -> ListNode:
         p1, p2 = headA, headB
         while p1 != p2:
+            # if p1:
+            #     print("p1:",p1.val)
+            # if p2:
+            #     print("p2:",p2.val)
+            # print("======")
             p1 = headB if not p1 else p1.next
             p2 = headA if not p2 else p2.next
-        print(p1.val)
+            # if p1:
+            #     print("after p1:",p1.val)
+            # if p2:
+            #     print("after p2:",p2.val)
+        # print(p1.val)
         return p1
 
 

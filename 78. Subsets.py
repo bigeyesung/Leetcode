@@ -1,7 +1,8 @@
 class Solution:
   def subsets(self, nums):
     ans = []
-
+    #T:O(n*2**n)
+    #S:O(n)
     def dfs(length, ind, curSub):
       #if target length == len of current Subarr-> append
       if length == len(curSub):

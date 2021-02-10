@@ -5,32 +5,47 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def calculate(root, L, R):
-        # return condition
-        if root == None:
+    def __init__(self):
+        self.ans=0
+
+    #Time: O(N)
+    #Space: O(H): where H is the maximum height of the tree
+    def startBST(self, node: TreeNode, low: int, high: int):
+        #if not node->return
+        if not node:
             return 0
-        else:
-            left_sum = self.calculate(root.left, L, R)
-            right_sum = calculate(root.right, L, R)
-            if root.val <= R and root.val >= L:
-                return left_sum + right_sum + root.val
-            else:
-                return left_sum + right_sum
+        #else: check cur val in range or not
+        cur,ret1,ret2=0,0,0
+        if low<=node.val<=high:
+            cur =node.val
+        #This BST, so we can check the range to decide to go further or not
+        if node.val>=low:
+            ret1=self.startBST(node.left,low,high)
+        #This BST, so we can check the range to decide to go further or not
+        if node.val<=high:
+            ret2=self.startBST(node.right,low,high)
 
-    def calculate_Preorder(root, L, R, arr):
-        if root == None:
-            return
-        else:
-            arr.append(root.val)
-            self.calculate_Preorder(root.left, L, R, arr)
-            self.calculate_Preorder(root.right, L, R, arr)
+        return ret1+ret2+cur
 
-    def rangeSumBST(self, root, L, R):
-
-        arr = []
-        self.calculate_Preorder(root, L, R, arr)
-        print(arr)
-        return self.calculate(root,L,R)
+        #Time: O(N)
+        #Space: O(w) where w is the maximum width of the tree
+    def startBfs(node,low,high):
+        stack = [node]
+        res = 0
+        while(stack):
+            curNode=stack.pop()
+            if low<=curNode.val<=high:
+                res+=curNode.val
+            if curNode.val<=high and curNode.right:
+                stack.append(curNode.right)
+            if curNode.val>=low and curNode.left:
+                stack.append(curNode.left)
+        return res    
+    def rangeSumBST(self, root: TreeNode, low: int, high: int) -> int:
+        
+        # func to traverse the tree
+        ret = self.startBST(root, low, high)
+        return ret
 
 node10 = TreeNode(10)
 node5 = TreeNode(5)

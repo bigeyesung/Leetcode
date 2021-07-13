@@ -40,4 +40,4 @@ class Solution:
 
 if __name__ == "__main__":
     sol = Solution()
-    ret = sol.countSubstrings1("aaa")
+    ret = sol.countSubstrings2("aaa")

@@ -1,3 +1,4 @@
+print('start')
 def find_unique_numbers(numbers):
     import collections
     arr = []

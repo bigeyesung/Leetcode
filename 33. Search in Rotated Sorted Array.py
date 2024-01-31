@@ -26,7 +26,7 @@
 #return -1
 
 class Solution:
-    def search(self, nums:, target):
+    def search(self, nums, target):
         left, right = 0, len(nums)-1
         while(left<=right):
             mid = (left+right)//2

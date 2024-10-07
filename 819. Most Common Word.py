@@ -11,14 +11,14 @@ class Solution:
         # converting to lower case
         paragraph = paragraph.lower()
         # splitting based on space to put the given words to a list
-        list1 = paragraph.split()
+        list1 = paragraph.split() #default separator is any whitespace.
 
         # checking if the word not in banned , and incrementing its count
         for i in list1:
             if i not in banned:
                 hashMap[i] = hashMap[i] + 1
 
-        # finding the word has occurs most number of times
+        # finding the word has occurs most number of times, O(n**2)
         maximum = max(hashMap.values())
 
         # finding the value of key for the word with maximum count
@@ -29,12 +29,12 @@ class Solution:
         # first we need to remove the symbols that can be present, and replacing with space
         symbols = "!?',;."
         for i in symbols:
-            paragraph = paragraph.replace(i, "")
+            paragraph = paragraph.replace(i, " ")
         hashMap = defaultdict(list)
         # converting to lower case
         paragraph = paragraph.lower()
         # splitting based on space to put the given words to a list
-        list1 = paragraph.split(" ")
+        list1 = paragraph.split()
         heap=[]
         heapq.heapify(heap)
         counter=Counter(list1)
@@ -55,5 +55,5 @@ if __name__=="__main__":
     sol=Solution()
     para="Bob hit a ball, the hit BALL flew far after it was hit."
     banned=["hit"]
-    ret=sol.mostCommonWord1(para,banned)
+    ret=sol.mostCommonWord(para,banned)
     print(ret)        
